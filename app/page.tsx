@@ -25,9 +25,7 @@ export default function Home() {
   const [selectedType, setSelectedType] = useState("todos-tipos");
   const [activeTab, setActiveTab] = useState("browse");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedPokemon, setSelectedPokemon] = useState<PokemonDetail | null>(
-    null
-  );
+  const [selectedPokemon, setSelectedPokemon] = useState<PokemonDetail | null>(null);
   const [isRedTheme, setIsRedTheme] = useState(true);
   const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
@@ -100,9 +98,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <div
         style={{
-          backgroundImage: `url('${
-            isRedTheme ? "bg-red.svg" : "bg-blue.svg"
-          }')`,
+          backgroundImage: `url('${isRedTheme ? "bg-red.svg" : "bg-blue.svg"}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -125,8 +121,7 @@ export default function Home() {
             {isRedTheme ? "Who's that Pokémon?" : "Catch them all!"}
           </h1>
           <p className="text-center text-white/90 mb-12">
-            The perfect guide for anyone who wants to hunt Pokémon around the
-            worlds.
+            The perfect guide for anyone who wants to hunt Pokémon around the worlds.
           </p>
 
           <div className="flex justify-center mb-4">
@@ -164,20 +159,16 @@ export default function Home() {
         <div className="w-full flex flex-col gap-6 lg:flex-row justify-between items-center p-20 pl-25 pr-28 bg-[#EFF3F6]">
           <h2 className="text-3xl font-bold mt-4">Select your Pokémon</h2>
           <div className="w-full md:w-[400px] mt-4">
-            {activeTab !== "favorites" && (
-              <SearchBar
-                onSearch={handleSearch}
-                loading={searchLoading}
-                onClear={handleSearch}
-              />
-            )}
+            {activeTab !== "favorites" && <SearchBar onSearch={handleSearch} loading={searchLoading} onClear={handleSearch} />}
           </div>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          <div className="lg:col-span-1 hidden lg:block">
+          <div
+            className="lg:col-span-1 block"
+          >
             <div className="space-y-4">
               <div className="flex gap-2 mb-6">
                 <Button
@@ -244,9 +235,7 @@ export default function Home() {
           pokemon={selectedPokemon}
           loading={false}
           onClose={() => setSelectedPokemon(null)}
-          isFav={favorites.some(
-            (fav: Favorite) => fav.pokemonId === selectedPokemon.id
-          )}
+          isFav={favorites.some((fav: Favorite) => fav.pokemonId === selectedPokemon.id)}
           favoriteList={favorites}
         />
       )}

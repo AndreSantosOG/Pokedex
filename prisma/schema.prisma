@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Favorite {
+  id        String   @id @default(uuid())
+  userId    String
+  pokemonId Int
+  name      String
+  image     String
+  notes     String? 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

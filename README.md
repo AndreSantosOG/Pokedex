@@ -92,7 +92,7 @@ http://localhost:3000
 
 - Netlify
 
-**Deploy:** https://pokedex-nextjs-prroject.netlify.app
+**Deploy:** https://pokedex-nextjs-project.netlify.app
 
 ---
 

@@ -15,7 +15,6 @@ import {
 } from "@/data/actions/pokemon-api";
 import { Favorite } from "@/data/model/favorite";
 import { PokemonBasic, PokemonDetail } from "@/data/model/pokemon";
-import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
 import Image from "next/image";
@@ -25,7 +24,9 @@ export default function Home() {
   const [selectedType, setSelectedType] = useState("todos-tipos");
   const [activeTab, setActiveTab] = useState("browse");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedPokemon, setSelectedPokemon] = useState<PokemonDetail | null>(null);
+  const [selectedPokemon, setSelectedPokemon] = useState<PokemonDetail | null>(
+    null
+  );
   const [isRedTheme, setIsRedTheme] = useState(true);
   const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
@@ -96,79 +97,79 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div
-        style={{
-          backgroundImage: `url('${isRedTheme ? "bg-red.svg" : "bg-blue.svg"}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        className="animate-smooth-fade relative w-full py-8 md:py-12 text-white overflow-hidden transition-all duration-1000"
-      >
-        <div className="absolute inset-0 bg-black/20"></div>
+      <div className="relative">
+        <div
+          style={{
+            backgroundImage: `url('${
+              isRedTheme ? "bg-red.svg" : "bg-blue.svg"
+            }')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          className="animate-smooth-fade relative w-full pt-8 pb-44 md:pt-12 md:pb-75 text-white overflow-hidden transition-all duration-1000"
+        >
+          <div className="absolute inset-0 bg-black/20"></div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex justify-between items-center mb-8">
-            <Image
-              src="pokemon-title.svg"
-              alt="Pokémon"
-              width={150}
-              height={150}
-              className="h-8 md:h-10"
-            />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="flex justify-between items-center mb-8">
+              <Image
+                src="pokemon-title.svg"
+                alt="Pokémon"
+                width={150}
+                height={150}
+                className="h-8 md:h-10"
+              />
+            </div>
+
+            <h1 className="text-4xl md:text-5xl font-bold text-center text-pretty mb-2">
+              {isRedTheme ? "Who's that Pokémon?" : "Catch them all!"}
+            </h1>
+            <p className="text-center text-white/90 mb-12">
+              The perfect guide for anyone who wants to hunt Pokémon around the
+              worlds.
+            </p>
+          </div>
+        </div>
+        <div className="relative">
+          <div className="absolute left-1/2 -translate-x-1/2 -top-35 sm:-top-40 md:-top-52 lg:-top-53 xl:-top-52 z-20">
+            <div className="w-52 h-52 sm:w-64 sm:h-64 md:w-90 md:h-90">
+              {isRedTheme ? (
+                <Image
+                  src="poke-red.svg"
+                  alt="Pokéball"
+                  width={1}
+                  height={1}
+                  className="w-full h-full drop-shadow-2xl object-contain animate-smooth-fade"
+                />
+              ) : (
+                <Image
+                  src="poke-blue.svg"
+                  alt="Pokéball"
+                  width={1}
+                  height={1}
+                  className="w-full h-full drop-shadow-2xl object-contain animate-smooth-fade"
+                />
+              )}
+            </div>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-center text-pretty mb-2">
-            {isRedTheme ? "Who's that Pokémon?" : "Catch them all!"}
-          </h1>
-          <p className="text-center text-white/90 mb-12">
-            The perfect guide for anyone who wants to hunt Pokémon around the worlds.
-          </p>
-
-          <div className="flex justify-center mb-4">
-            <div className="relative w-68 h-68 md:w-64 md:h-64"></div>
+          <div className="w-full flex flex-col gap-6 lg:flex-row justify-between items-center p-20 pt-32 pl-25 pr-28 bg-[#EFF3F6]">
+            <h2 className="text-3xl font-bold mt-4">Select your Pokémon</h2>
+            <div className="w-full md:w-[400px] mt-4">
+              {activeTab !== "favorites" && (
+                <SearchBar
+                  onSearch={handleSearch}
+                  loading={searchLoading}
+                  onClear={handleSearch}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
-      <div
-        className={cn(
-          "absolute left-1/2 -translate-x-1/2",
-          !isRedTheme ? "lg:-bottom-5 bottom-14" : "lg:-bottom-20 bottom-5"
-        )}
-      >
-        <div className="w-70 h-70 lg:w-110 lg:h-100">
-          {isRedTheme ? (
-            <Image
-              src="poke-red.svg"
-              alt="Pokéball"
-              width={1}
-              height={1}
-              className="w-full h-full drop-shadow-2xl object-contain transition-all animate-smooth-fade duration-5"
-            />
-          ) : (
-            <Image
-              src="poke-blue.svg"
-              alt="Pokéball"
-              width={1}
-              height={1}
-              className="w-full h-full drop-shadow-2xl object-contain transition-all animate-smooth-fade duration-5 "
-            />
-          )}
-        </div>
-      </div>
-      <div>
-        <div className="w-full flex flex-col gap-6 lg:flex-row justify-between items-center p-20 pl-25 pr-28 bg-[#EFF3F6]">
-          <h2 className="text-3xl font-bold mt-4">Select your Pokémon</h2>
-          <div className="w-full md:w-[400px] mt-4">
-            {activeTab !== "favorites" && <SearchBar onSearch={handleSearch} loading={searchLoading} onClear={handleSearch} />}
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          <div
-            className="lg:col-span-1 block"
-          >
+          <div className="lg:col-span-1 block">
             <div className="space-y-4">
               <div className="flex gap-2 mb-6">
                 <Button
@@ -235,10 +236,13 @@ export default function Home() {
           pokemon={selectedPokemon}
           loading={false}
           onClose={() => setSelectedPokemon(null)}
-          isFav={favorites.some((fav: Favorite) => fav.pokemonId === selectedPokemon.id)}
+          isFav={favorites.some(
+            (fav: Favorite) => fav.pokemonId === selectedPokemon.id
+          )}
           favoriteList={favorites}
         />
       )}
+         
     </div>
   );
 }

@@ -46,6 +46,7 @@ export function SearchBar({
           className="p-3 text-sm"
         />
       </div>
+      <div className="flex flex gap-2 items-center">
       <Button type="submit" disabled={loading} className="pointer">
         <Search className="mr-1 h-4 w-4" />
         Search
@@ -56,10 +57,11 @@ export function SearchBar({
           onClear("");
         }}
         variant="outline"
-        className="pointer"
+        className="pointer p-4.5"
       >
         Clear
       </Button>
+      </div>
     </form>
   );
 }

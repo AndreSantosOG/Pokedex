@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { typeColors } from "@/constant/pokemon-types-colors";
+import { queryKeys } from "@/constant/query-keys";
 import {
   addFavorite,
   removeFavorite,
@@ -13,13 +14,12 @@ import { Favorite } from "@/data/model/favorite";
 import { PokemonDetail } from "@/data/model/pokemon";
 import { cn } from "@/lib/utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Heart, X } from "lucide-react";
+import { Heart } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogTitle } from "./ui/dialog";
 import { ScrollArea } from "./ui/scroll-area";
-import { queryKeys } from "@/constant/query-keys";
 
 interface PokemonDetailProps {
   pokemon: PokemonDetail | null;
@@ -132,12 +132,6 @@ export function PokemonDetailModal({
           pokemon && (
             <ScrollArea className="h-[80vh]">
               <DialogTitle></DialogTitle>
-              <button
-                onClick={onClose}
-                className="cursor-pointer absolute right-4 top-4 rounded-full bg-background hover:bg-muted p-2 z-10"
-              >
-                <X className="h-4 w-4" />
-              </button>
 
               <div className="p-6 pb-0">
                 <div className="flex flex-wrap items-center justify-between gap-4">

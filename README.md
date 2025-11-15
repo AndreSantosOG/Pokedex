@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 📌 Descrição do Projeto
 
-## Getting Started
+Aplicação construída em **Next.js** consumindo a **PokeAPI**, com gerenciamento de favoritos persistido em banco de dados PostgreSQL via **Prisma**.  
+Um `userId` é gerado automaticamente no **LocalStorage** para identificar cada usuário.
 
-First, run the development server:
+Este projeto atende aos requisitos do desafio técnico:
+
+- Buscar Pokémons por **nome ou ID**
+- Listar Pokémons com **nome, ID e sprite**
+- Exibir detalhes completos (tipos, habilidades, stats)
+- CRUD de favoritos (**adicionar, editar notas, ver, remover**)
+- Persistência em banco de dados
+- Integração completa com API pública
+- Geração automática de `userId` por LocalStorage
+- **Filtro por tipo**
+- **Dados persistido em banco de dados**
+- Aplicação Responsiva
+
+❗ Única parte opcional não implementada: **testes automatizados**
+
+---
+
+## 🛠 Tecnologias Utilizadas
+
+### **Frontend**
+- Next.js (App Router)
+- React
+- TypeScript
+- Tailwind CSS
+- Shadcn UI
+
+### **Backend**
+- Prisma ORM
+- PostgreSQL (Neon)
+
+### **Outros**
+- LocalStorage
+- API Routes do Next.js
+- PokeAPI
+
+---
+
+## 🚀 Como Rodar o Projeto
+
+#### 1️⃣ Clonar o repositório
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/AndreSantosOG/Pokedex.git
+cd Pokedex
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### 2️⃣ Instalar dependências
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Com **pnpm**:
+```bash
+pnpm i
+```
 
-## Learn More
+#### 3️⃣ Criar arquivo `.env`
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cp .env.example .env
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+No `.env`, adicionar:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+DATABASE_URL="COLE_AQUI_O_LINK_DO_BANCO"
+```
 
-## Deploy on Vercel
+⚠️ Observação:  
+O link do banco será enviado por **e-mail** e você deve colar no `DATABASE_URL`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### 5️⃣ Rodar o servidor
+
+Com pnpm:
+```bash
+pnpm dev
+```
+
+Acesse em:  
+```
+http://localhost:3000
+```
+---
+
+## 🌐 Deploy
+
+- Netlify
+
+**Deploy:** https://pokedex-nextjs-prroject.netlify.app
+
+---
+
+## 💾 Persistência dos Favoritos
+
+- A aplicação gera um `userId` único no LocalStorage.
+- Todos os favoritos são vinculados a esse usuário no banco.
+
+Exemplo:
+
+```json
+{
+  "id": "uuid",
+  "userId": "uuid do localStorage"
+  "pokemonId": 4,
+  "name": "Charmander",
+  "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
+  "note": "usar em time elétrico",
+  "createdAt": "2025-11-14 20:56:19.958",
+  "updatedAt": "2025-11-14 20:56:19.958"
+}
+```
